@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out roman_2_int.cpp 
