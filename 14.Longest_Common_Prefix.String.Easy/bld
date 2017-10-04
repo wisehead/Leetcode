@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out longest_com_prefix.cpp 
