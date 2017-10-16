@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out merge_2_sorted_list.cpp 
