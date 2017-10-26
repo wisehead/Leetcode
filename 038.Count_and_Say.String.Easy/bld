@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out count_and_say.cpp 
