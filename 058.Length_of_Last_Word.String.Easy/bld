@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out length_of_Last_Word.cpp 
