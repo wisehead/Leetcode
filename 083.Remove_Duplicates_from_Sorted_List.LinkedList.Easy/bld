@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out remove_dup_from_sorted_list.cpp 
