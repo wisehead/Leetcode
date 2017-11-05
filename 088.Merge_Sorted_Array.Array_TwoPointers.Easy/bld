@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out merge_sorted_array.cpp 
