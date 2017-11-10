@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out bin_tree_level_order.cpp 
