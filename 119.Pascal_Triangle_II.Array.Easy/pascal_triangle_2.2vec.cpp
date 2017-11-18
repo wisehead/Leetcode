@@ -12,6 +12,7 @@ class Solution {
 public:
     vector<int> getRow(int rowIndex) {
         vector<int> vec_ping;
+        vector<int> vec_pong;
         if (rowIndex < 0)
             return vec_ping;
         vec_ping.push_back(1);
@@ -21,17 +22,16 @@ public:
         int count = 0;
         while (count < rowIndex)
         {
-            for (int i = vec_ping.size(); i>=0; i--)
+            vec_pong.clear();
+            for (int i = 0; i<=vec_ping.size(); i++)
             {
-                if (i == vec_ping.size())
-                    vec_ping.push_back(1);
-				else if (i== 0)
-				{
-					//do nothing
-				}
+                if (i == 0 || i == vec_ping.size())
+                    vec_pong.push_back(1);
                 else
-					vec_ping[i] = vec_ping[i] + vec_ping[i-1];
+                    vec_pong.push_back(vec_ping[i] + vec_ping[i-1]);
             }
+            vec_ping.clear();
+            vec_ping.assign(vec_pong.begin(), vec_pong.end());
             count++;
         }
         return vec_ping;
