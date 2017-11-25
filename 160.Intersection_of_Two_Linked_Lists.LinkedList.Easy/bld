@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out intersection_of_2_linked_lists.cpp 
