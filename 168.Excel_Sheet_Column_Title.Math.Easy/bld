@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out excel_sheet_column_title.cpp 
