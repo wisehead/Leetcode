@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out factorial_trailing_zeros.cpp 
