@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out reverse_linked_list.cpp 
