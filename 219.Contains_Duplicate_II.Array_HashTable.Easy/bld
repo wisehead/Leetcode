@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out contains_dups_II.cpp 
