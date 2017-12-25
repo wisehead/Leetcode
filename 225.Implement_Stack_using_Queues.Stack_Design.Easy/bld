@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out stack_with_queue.cpp 
