@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out range_sum_query.cpp 
