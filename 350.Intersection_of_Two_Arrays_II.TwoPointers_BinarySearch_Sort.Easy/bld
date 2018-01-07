@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out intersection_of_two_array_II.cpp 
