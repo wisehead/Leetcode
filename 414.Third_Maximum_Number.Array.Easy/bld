@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out  3rd_max_num.cpp 
