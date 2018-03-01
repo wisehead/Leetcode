@@ -1,2 +1,2 @@
 #!/bin/sh
-g++ -g -o out single_num.cpp 
+g++ -g -o out  binary_watch.cpp 
