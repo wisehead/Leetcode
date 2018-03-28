@@ -1,2 +1,2 @@
-#!/bin/sh
+#!/bin/zsh
 g++ -g -o out single_num.cpp 
