@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out min_moves_to_equal_array_elements.cpp 
