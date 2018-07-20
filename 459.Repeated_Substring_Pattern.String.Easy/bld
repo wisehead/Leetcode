@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out repeat_substr_pattern.cpp 
