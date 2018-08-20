@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out find_mode_in_BST.cpp 
