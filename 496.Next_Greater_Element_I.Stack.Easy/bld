@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out next_greater_element_I.cpp 
