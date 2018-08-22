@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out min_abs_diff_in_bst.cpp 
