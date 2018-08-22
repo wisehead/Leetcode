@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out longest_uncommon_subsequence_I.cpp 
