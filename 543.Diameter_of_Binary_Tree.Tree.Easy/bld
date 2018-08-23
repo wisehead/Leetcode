@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out diameter_of_BT.cpp 
