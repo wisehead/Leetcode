@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out convert_bst_to_greater_tree.cpp 
