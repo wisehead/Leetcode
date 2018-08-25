@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out subtree_of_another_tree.cpp 
