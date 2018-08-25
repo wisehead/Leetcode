@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out max_depth_of_Nary_tree.cpp 
