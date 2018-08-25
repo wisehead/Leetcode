@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out reverse_words_in_a_string_III.cpp 
