@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out n_ary_tree_preorder_traversal.cpp 
