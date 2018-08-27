@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out min_index_of_two_lists.cpp 
