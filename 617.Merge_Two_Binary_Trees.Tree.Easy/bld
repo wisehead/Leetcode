@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out merge_two_binary_trees.cpp 
