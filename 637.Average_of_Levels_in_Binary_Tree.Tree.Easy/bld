@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out average_of_levels_in_binary_tree.cpp 
