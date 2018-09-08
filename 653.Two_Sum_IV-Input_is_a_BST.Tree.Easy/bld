@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out two_sum_IV_input_is_a_bst.cpp 
