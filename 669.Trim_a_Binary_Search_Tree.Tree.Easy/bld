@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out trim_a_BST.cpp 
