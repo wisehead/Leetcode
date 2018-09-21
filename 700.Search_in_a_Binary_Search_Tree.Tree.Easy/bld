@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out search_in_a_BST.cpp 
