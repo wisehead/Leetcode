@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out 1bit_and_2bit_characters.cpp 
