@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out to_lower_case.cpp 
