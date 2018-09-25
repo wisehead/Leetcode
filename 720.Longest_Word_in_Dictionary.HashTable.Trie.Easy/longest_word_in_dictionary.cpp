@@ -12,6 +12,7 @@ using namespace std;
 class Solution {
 public:
     string longestWord(vector<string>& words) {
+        sort(words.begin(), words.end());
 		int len = words.size();
 		set<string> ss;
 		set<string>::iterator it;

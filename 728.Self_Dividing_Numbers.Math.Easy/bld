@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out self_dividing_numbers.cpp 
