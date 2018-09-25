@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out longest_word_in_dictionary.cpp 
