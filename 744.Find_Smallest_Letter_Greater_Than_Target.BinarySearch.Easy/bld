@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out find_smallest_letter_greater_than_target.cpp 
