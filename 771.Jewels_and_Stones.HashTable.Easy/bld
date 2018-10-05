@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out jewels_and_stones.cpp 
