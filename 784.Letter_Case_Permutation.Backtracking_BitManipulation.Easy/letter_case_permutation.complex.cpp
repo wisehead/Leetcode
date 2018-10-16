@@ -18,6 +18,7 @@ public:
 		return c;
 	}
     vector<string> letterCasePermutation(string S) {
+		cout<<"S is:"<<S<<endl;
 		int len = S.length();
 		vector<string> vec;
 		if (len == 0)
@@ -29,28 +30,47 @@ public:
 		vector<string> subvec = letterCasePermutation(sub);
 
 		int size = subvec.size();
+		//cout<<"subvec size:"<<size<<endl;
 		if (S[0] >= '0' && S[0] <= '9')
 		{
-			for (int i=0; i < size|| i == 0; i++)
+			if (size == 0)
+			{
+				string sub;
+				string temp = S[0] + sub;
+				//cout<<"temp:"<<temp<<endl;
+				vec.push_back(temp);
+			}
+			for (int i=0; i < size; i++)
 			{
 				string sub;
 				if (size != 0) sub = subvec[i];
 				string temp = S[0] + sub;
+				cout<<"temp:"<<temp<<endl;
 				vec.push_back(temp);
-                if (size == 0) break;
 			}
 		}	
 		else// letters
 		{
-			for (int i=0; i < size || i == 0; i++)
+			if (size == 0)
+			{
+				string sub;
+				string temp = S[0] + sub;
+				//cout<<"temp:"<<temp<<endl;
+				vec.push_back(temp);
+				string temp2 = up_low_exchange(S[0]) + sub;
+				//cout<<"temp2:"<<temp2<<endl;
+				vec.push_back(temp2);
+			}
+			for (int i=0; i < size; i++)
 			{
 				string sub;
 				if (size != 0) sub = subvec[i];
 				string temp = S[0] + sub;
+				//cout<<"temp:"<<temp<<endl;
 				vec.push_back(temp);
 				string temp2 = up_low_exchange(S[0]) + sub;
+				//cout<<"temp2:"<<temp2<<endl;
 				vec.push_back(temp2);
-                if (size == 0) break;
 			}
 		}
 		return vec;
