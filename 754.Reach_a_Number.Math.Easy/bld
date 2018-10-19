@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out reach_a_number.cpp 
