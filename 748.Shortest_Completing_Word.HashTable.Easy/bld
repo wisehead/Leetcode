@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out shortest_completing_word.cpp 
