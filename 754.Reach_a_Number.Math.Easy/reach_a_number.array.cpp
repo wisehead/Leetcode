@@ -6,23 +6,37 @@
  *  modified time: 2018/10/19-19:11:58                              
  *******************************************************************************/
 #include <iostream>
-#include <math.h>
+#include <set>
 using namespace std;
 class Solution {
 public:
     int reachNumber(int target) {
-        target = abs(target);
-        int step = 0;
-        int sum = 0;
-        while (sum < target) {
-            step++;
-            sum += step;
-        }
-        while ((sum - target) % 2 != 0) {
-            step++;
-            sum += step;
-        }
-        return step;
+		set<int> s;
+		int i = 1;
+		while (1)
+		{
+			set<int>::iterator iter;
+			set<int> s2;
+			for(iter = s.begin() ; iter != s.end() ; ++iter)
+			{
+				int temp1 = *iter + i;
+				cout<<"i:"<<i<<"	temp1:"<<temp1<<endl;
+				s2.insert(temp1);
+				int temp2 = *iter - i;
+				cout<<"i:"<<i<<"	temp2:"<<temp2<<endl;
+				s2.insert(temp2);
+			}
+			s = s2;
+			//cout<<"i:"<<i<<"	*iter:"<<*iter<<endl;
+			if (i==1)
+			{
+				s.insert(1);
+				s.insert(-1);
+			}
+			if (s.count(target)) return i;
+			i++;
+		}
+		return i;
     }
 };
 int main()

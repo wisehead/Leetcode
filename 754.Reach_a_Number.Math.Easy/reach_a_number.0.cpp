@@ -6,23 +6,30 @@
  *  modified time: 2018/10/19-19:11:58                              
  *******************************************************************************/
 #include <iostream>
-#include <math.h>
 using namespace std;
 class Solution {
 public:
     int reachNumber(int target) {
-        target = abs(target);
-        int step = 0;
-        int sum = 0;
-        while (sum < target) {
-            step++;
-            sum += step;
-        }
-        while ((sum - target) % 2 != 0) {
-            step++;
-            sum += step;
-        }
-        return step;
+        if (target < 0) target = 0 - target;
+		int steps = 1, x = 0;
+		int count = 0;
+		for (int i = 1; x < target; i++, steps++)
+		{
+			x += steps;
+			//cout<<"i:"<<i<<"	steps:"<<steps<<"	x:"<<x<<endl;
+			if (x == target)
+			{
+				count = i;
+				break;
+			}
+			if (x > target)
+			{
+				x -= steps;
+				count = (i-1) + 2*(target - x);
+				break;
+			}
+		}
+		return count;
     }
 };
 int main()
