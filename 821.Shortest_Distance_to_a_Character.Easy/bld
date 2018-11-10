@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out shortest_distance_to_a_character.cpp 
