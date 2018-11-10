@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out positions_of_large_groups.cpp 
