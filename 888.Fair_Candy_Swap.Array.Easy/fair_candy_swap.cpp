@@ -24,26 +24,15 @@ public:
 		}
 		//int ave = (sum_A + sum_B)/2;
 		int delta = 0;
-		vector<int> vec_small, vec_big;
-		if (sum_A > sum_B)
+		delta = (sum_A - sum_B)/2;
+		for (int i=0; i<A.size(); i++)
 		{
-			vec_small = B;
-			vec_big = A;
-			delta = (sum_A - sum_B)/2;
-		}
-		else
-		{
-			vec_small = A;
-			vec_big = B;
-			delta = (sum_B - sum_A)/2;
-		}
-		for (int i=0; i<vec_small.size(); i++)
-		{
-			vector<int>::iterator it = find( vec_big.begin(), vec_big.end(), vec_small[i] + delta);
-			if (it != vec_big.end())
+			vector<int>::iterator it = find(B.begin(), B.end(), A[i] - delta);
+			if (it != B.end())
 			{
-				res.push_back(vec_small[i]);
-				res.push_back(vec_small[i] + delta);
+				res.push_back(A[i]);
+				res.push_back(A[i] - delta);
+				break;
 			}
 		}
 		return res;
