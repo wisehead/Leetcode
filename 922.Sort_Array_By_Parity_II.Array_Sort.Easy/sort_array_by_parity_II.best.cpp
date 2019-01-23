@@ -10,33 +10,14 @@
 using namespace std;
 class Solution {
 public:
-    vector<int> sortArrayByParityII(vector<int>& A) {
-		int size = A.size();
-        vector<int> B(A.begin(), A.end());
-		int even = 0, odd = 1;
-		for (int i =0; i < size; i++)
-		{
-			if (A[i] % 2 == 0) 
-			{
-				//swap(A[even], A[i]);
-                B[even] = A[i];
-				even += 2;
-			}
-			else
-			{
-				//swap(A[odd], A[i]);
-				B[odd] = A[i];
-                odd += 2;           
-			}
-            /*
-            cout<<i;
-            for (int j = 0; j < size; j++)
-                cout<<"  B["<<j<<"]"<<B[j]<<" ";       
-            cout<<endl;
-            */
-		}
-		return B;
-    }
+	vector<int> sortArrayByParityII(vector<int>& A) {
+	    for (int i = 0, j = 1; i < A.size(); i += 2, j += 2) {
+	        while (i < A.size() && A[i] % 2 == 0) i += 2;
+	        while (j < A.size() && A[j] % 2 == 1) j += 2;
+	        if (i < A.size()) swap(A[i], A[j]);
+	    }
+	    return A;
+	}
 };
 int main()
 {}
