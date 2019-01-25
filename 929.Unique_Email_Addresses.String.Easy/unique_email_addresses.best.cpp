@@ -17,7 +17,6 @@ public:
 		{
             auto pivot = e.find_first_of('@'); auto name = e.substr( 0, pivot ), domain = e.substr( pivot );
             name.erase( remove( name.begin(), name.end(), '.' ), name.end() );
-            //unique.insert( name.erase( name.find_first_of('+') ) + domain );
 			ss.insert(name.erase( name.find_first_of('+') ) + domain);
         }
 		return ss.size();
