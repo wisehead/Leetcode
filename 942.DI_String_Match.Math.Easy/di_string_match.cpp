@@ -7,38 +7,46 @@
  *******************************************************************************/
 #include <iostream>
 #include <vector>
+#include <set>
 using namespace std;
 class Solution {
 public:
     vector<int> diStringMatch(string S) {
-		int floor = 0, upper = 0, x = 0;
-		//int floor_pos = 0, upper_pos = 0;
-		for (int i = 0; i < S.length(); i++)
-		{
-			if ((S[i] == 'I') && (++x > upper))
-			{
-				upper = x;
-				//upper_pos = i;
-			}
-			else if (--x < floor)
-			{
-				floor = x;
-				//floor_pos = i;
-			}
-		}
+		set<int> myset;
+		for (int i = 0; i < S.length()+1; i++)
+			myset.insert(i);
 		vector<int> vec;
-		int val = 0 - floor;
-		vec.push_back(val);
+		int val = 0;
 		for (auto &e : S)
 		{
+			set<int>::iterator it;
 			if (e == 'I')
-				vec.push_back(++val);
+			{
+				val = *myset.begin();
+				myset.erase(val);
+				cout<<"I val:"<<val<<endl;
+				vec.push_back(val);
+			}
 			else
-				vec.push_back(--val);
+			{
+				val = *myset.rbegin();
+				myset.erase(val);
+				cout<<"D val:"<<val<<endl;;
+				vec.push_back(val);
+			}
 		}
+		val = *myset.begin();
+		cout<<"I val:"<<val<<endl;
+		vec.push_back(val);
 		return vec;
 
     }
 };
 int main()
-{}
+{
+	Solution sol;
+	//string ss = "IDID";
+	//string ss = "III";
+	string ss = "DDI";
+	vector<int> res = sol.diStringMatch(ss);
+}
