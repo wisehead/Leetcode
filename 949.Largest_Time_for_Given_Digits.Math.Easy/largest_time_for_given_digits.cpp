@@ -12,7 +12,6 @@ using namespace std;
 class Solution {
 public:
 	string getMinutes(vector<int>& A) {
-		cout<<"A[0]:"<<A[0]<<"	A[1]:"<<A[1]<<endl;
 		string res;
 		if (A[1]*10 + A[0] > 59)
 		{
@@ -32,90 +31,55 @@ public:
 		return res;
 	}
 
-    string process2(vector<int>& B) {
+    string process(vector<int>& B, int n) {
 		vector<int> A(B.begin(), B.end());
 		string res;
-		cout<<"process2"<<endl;
+		cout<<"process"<<n<<endl;
 		vector<int>::iterator it;
-		it = find(A.begin(), A.end(), 2);
+		it = find(A.begin(), A.end(), n);
 		if (it == A.end()) return "";
 		res.append(1, '0' + *it);
 		A.erase(it);
-		for (it = A.begin(); it != A.end() && *it <= 3 ; it++);
-		if (it == A.end())
-		{	
-			if (A[2] > 3 ) return "";
+
+		if (n==2)
+		{
+			for (it = A.begin(); it != A.end() && *it <= 3 ; it++);
+			if (it == A.end())
+				if (A[2] > 3 ) return "";
+			if (it == A.begin()) return "";
+			it--;
 		}
-		if (it == A.begin()) return "";
+		else if (n==1)
+			it = A.end() - 1;
+		else if (n==0)
+			it = A.end() - 1;
 
-		it--;
 		res.append(1, '0' + *it);
 		A.erase(it);
 		string tmp = getMinutes(A);
 		if (tmp == "") return "";
 		res += ":" + tmp;
-		cout<<"res:"<<res<<endl;
 		return res;
 	}
-
-    string process1(vector<int>& B) {
-		vector<int> A(B.begin(), B.end());
-		string res;
-		cout<<"process1"<<endl;
-		vector<int>::iterator it;
-		it = find(A.begin(), A.end(), 1);
-		if (it == A.end()) return "";
-		res.append(1, '0' + *it);
-		A.erase(it);
-		it = A.end() - 1;
-		res.append(1, '0' + *it);
-		A.erase(it);
-		string tmp = getMinutes(A);
-		if (tmp == "") return "";
-		res += ":" + tmp;
-		cout<<"res"<<res<<endl;
-		return res;
-	}
-
-    string process0(vector<int>& B) {
-		vector<int> A(B.begin(), B.end());
-		string res;
-		cout<<"process0"<<endl;
-		vector<int>::iterator it;
-		it = find(A.begin(), A.end(), 0);
-		if (it == A.end()) return "";
-		res.append(1, '0' + *it);
-		A.erase(it);
-		it = A.end() - 1;
-		res.append(1, '0' + *it);
-		A.erase(it);
-		string tmp = getMinutes(A);
-		if (tmp == "") return "";
-		res += ":" + tmp;
-		cout<<"res"<<res<<endl;
-		return res;
-	}
-
     string largestTimeFromDigits(vector<int>& A) {
 		string res;
 		sort(A.begin(), A.end());
 		vector<int>::iterator it;
-		res = process2(A);
+		res = process(A,2);
 		if (res != "") return res;
-		res = process1(A);
+		res = process(A,1);
 		if (res != "") return res;
-		res = process0(A);
-		if (res != "") return res;
-		return "";
+		res = process(A,0);
+		if (res != "") return res; return "";
     }
 };
 int main()
 {
 	Solution sol;
-	//int arr[] = {1,2,3,4};
+	int arr[] = {1,2,3,4};
 	//int arr[] = {5,5,5,5};
 	//int arr[] = {4,2,4,4};
-	int arr[] = {9,0,7,7};
+	//int arr[] = {9,0,7,7};
 	//int arr[] = {2,0,6,6};
 	vector<int> vec(arr, arr+4);
 	string res = sol.largestTimeFromDigits(vec);
