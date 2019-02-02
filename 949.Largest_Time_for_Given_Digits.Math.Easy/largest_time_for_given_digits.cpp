@@ -31,69 +31,82 @@ public:
 		}
 		return res;
 	}
+
+    string process2(vector<int>& B) {
+		vector<int> A(B.begin(), B.end());
+		string res;
+		cout<<"process2"<<endl;
+		vector<int>::iterator it;
+		it = find(A.begin(), A.end(), 2);
+		if (it == A.end()) return "";
+		res.append(1, '0' + *it);
+		A.erase(it);
+		for (it = A.begin(); it != A.end() && *it <= 3 ; it++);
+		if (it == A.end())
+		{	
+			if (A[2] > 3 ) return "";
+		}
+		if (it == A.begin()) return "";
+
+		it--;
+		res.append(1, '0' + *it);
+		A.erase(it);
+		string tmp = getMinutes(A);
+		if (tmp == "") return "";
+		res += ":" + tmp;
+		cout<<"res:"<<res<<endl;
+		return res;
+	}
+
+    string process1(vector<int>& B) {
+		vector<int> A(B.begin(), B.end());
+		string res;
+		cout<<"process1"<<endl;
+		vector<int>::iterator it;
+		it = find(A.begin(), A.end(), 1);
+		if (it == A.end()) return "";
+		res.append(1, '0' + *it);
+		A.erase(it);
+		it = A.end() - 1;
+		res.append(1, '0' + *it);
+		A.erase(it);
+		string tmp = getMinutes(A);
+		if (tmp == "") return "";
+		res += ":" + tmp;
+		cout<<"res"<<res<<endl;
+		return res;
+	}
+
+    string process0(vector<int>& B) {
+		vector<int> A(B.begin(), B.end());
+		string res;
+		cout<<"process0"<<endl;
+		vector<int>::iterator it;
+		it = find(A.begin(), A.end(), 0);
+		if (it == A.end()) return "";
+		res.append(1, '0' + *it);
+		A.erase(it);
+		it = A.end() - 1;
+		res.append(1, '0' + *it);
+		A.erase(it);
+		string tmp = getMinutes(A);
+		if (tmp == "") return "";
+		res += ":" + tmp;
+		cout<<"res"<<res<<endl;
+		return res;
+	}
+
     string largestTimeFromDigits(vector<int>& A) {
 		string res;
 		sort(A.begin(), A.end());
 		vector<int>::iterator it;
-		// first digit is 2
-		cout<<"39"<<endl;
-		it = find(A.begin(), A.end(), 2);
-		if (it != A.end())
-		{
-			cout<<"42"<<endl;
-			res.append(1, '0' + *it);
-			A.erase(it);
-			for (it = A.begin(); it != A.end() && *it <= 3 ; it++);
-			if (it == A.end())
-			{	
-				if (A[2] > 3 ) return "";
-			}
-			if (it == A.begin()) return "";
-
-			it--;
-			res.append(1, '0' + *it);
-			A.erase(it);
-			string tmp = getMinutes(A);
-			if (tmp == "") return "";
-			res += ":" + tmp;
-			cout<<"res:"<<res<<endl;
-		} else
-		{
-			cout<<"52"<<endl;
-			it = find(A.begin(), A.end(), 1);
-			if (it != A.end())
-			{
-				res.append(1, '0' + *it);
-				A.erase(it);
-				it = A.end() - 1;
-				res.append(1, '0' + *it);
-				A.erase(it);
-				string tmp = getMinutes(A);
-				if (tmp == "") return "";
-				res += ":" + tmp;
-				cout<<"res"<<res<<endl;
-			}
-			else
-			{
-				cout<<"66"<<endl;
-				it = find(A.begin(), A.end(), 0);
-				if (it != A.end())
-				{
-					res.append(1, '0' + *it);
-					A.erase(it);
-					it = A.end() - 1;
-					res.append(1, '0' + *it);
-					A.erase(it);
-					string tmp = getMinutes(A);
-					if (tmp == "") return "";
-					res += ":" + tmp;
-					cout<<"res"<<res<<endl;
-				}
-				else
-					return "";
-			}
-		}
-		return res;
+		res = process2(A);
+		if (res != "") return res;
+		res = process1(A);
+		if (res != "") return res;
+		res = process0(A);
+		if (res != "") return res;
+		return "";
     }
 };
 int main()
@@ -102,8 +115,8 @@ int main()
 	//int arr[] = {1,2,3,4};
 	//int arr[] = {5,5,5,5};
 	//int arr[] = {4,2,4,4};
-	//int arr[] = {9,0,7,7};
-	int arr[] = {2,0,6,6};
+	int arr[] = {9,0,7,7};
+	//int arr[] = {2,0,6,6};
 	vector<int> vec(arr, arr+4);
 	string res = sol.largestTimeFromDigits(vec);
 	cout<<"res:"<<res<<endl;
