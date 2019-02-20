@@ -12,24 +12,39 @@ using namespace std;
 class Solution {
 public:
     vector<int> addToArrayForm(vector<int>& A, int K) {
-		long long sum_A = 0;
-		long long base = 1;
-		vector<int> res;
+		int i = 0;
+		int size = A.size();
 		reverse(A.begin(), A.end());
-		for (auto &e : A)
+		bool carry = false;
+		while (K > 0 || carry)
 		{
-			sum_A +=  e*base;
-			base *= 10;
+			int tmp = K % 10;
+			if (carry) tmp++;
+			carry = false;
+			if (i < size)
+			{
+                
+				A[i] += tmp;
+				if (A[i] > 9) 
+				{
+					A[i] -= 10;
+					carry = true;
+				}
+			}
+			else
+			{
+				if (tmp > 9) 
+				{
+					tmp -= 10;
+					carry = true;
+				}
+				A.insert(A.end(), tmp);
+			}
+            K /= 10;
+            i++;
 		}
-		long long result = sum_A + K;
-		while (result > 0)
-		{
-			int mod = result % 10;
-			res.push_back(mod);
-			result /= 10;
-		}
-        reverse(res.begin(), res.end());
-		return res;
+        reverse(A.begin(), A.end());
+		return A;
     }
 };
 int main()
