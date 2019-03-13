@@ -26,13 +26,7 @@ struct Interval {
 };
 bool cmp(Interval x, Interval y)
 {
-	if(x.start < y.start)
-		return true;
-	if(x.start > y.start)
-		return false;
-	if (x.end <= y.end)
-		return true;
-	return false;
+	return (x.start < y.start);
 }
 
 class Solution {
@@ -40,29 +34,26 @@ public:
     vector<Interval> merge(vector<Interval>& intervals) {
 		vector<Interval> res;
 		int size = intervals.size();
-		for (auto& e : intervals)
-		{
-			cout<<"start:"<<e.start<<"	end:"<<e.end<<endl;
-		}
+        if (!size) return res;
+        if (size == 1) return intervals;
 		sort(intervals.begin(), intervals.end(), cmp);
-		for (auto& e : intervals)
+        
+        Interval merge(intervals[0].start, intervals[0].end);
+		for (int i = 1; i < size; i++)
 		{
-			cout<<"start:"<<e.start<<"	end:"<<e.end<<endl;
-		}
-		bool is_merge = false;
-		for (int i = 0; i < size - 1; i++)
-		{
-			is_merge = false;
-			if (intervals[i].end >= intervals[i+1].start)
+			if (merge.end >= intervals[i].start)
 			{
-				Interval merge(intervals[i].start, intervals[i+1].end);
-				res.push_back(merge);
-				is_merge = true;
+				merge.start = merge.start;
+                merge.end = max(merge.end, intervals[i].end);;
 			}
 			else
-				res.push_back(intervals[i]);
+            {
+				res.push_back(merge);
+				merge.start = intervals[i].start;
+                merge.end = intervals[i].end;
+            }
+            if (i == size - 1) res.push_back(merge);
 		}
-		if (!is_merge) res.push_back(intervals[size - 1]);
 		return res;
     }
 };
