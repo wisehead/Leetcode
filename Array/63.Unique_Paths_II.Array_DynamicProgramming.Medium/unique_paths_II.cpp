@@ -13,6 +13,7 @@ public:
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
 		int m = obstacleGrid.size();
 		int n = obstacleGrid[0].size();
+		vector<unsigned long long> vec(n, 1);
 		for (int i = 0; i < m; i++)
 		{
 			if (i == 0)
@@ -20,9 +21,12 @@ public:
 				for (int j = 0; j < n; j++)
 				{
 					if (obstacleGrid[i][j] != 0)
-						obstacleGrid[i][j] = 0;
-					else 
-						obstacleGrid[i][j] = 1;
+						vec[j] = 0;
+					else if (j == 0)
+                        vec[j] = 1;
+                    else
+						vec[j] = vec[j-1];
+                    //cout<<"1 vec["<<j<<"]"<<vec[j]<<endl;
 				}
 				continue;
 			}
@@ -31,18 +35,19 @@ public:
 				if (j == 0)
 				{
 					if (obstacleGrid[i][j] != 0)
-						obstacleGrid[i][j] = 0;
+						vec[j] = 0;
 					else 
-						obstacleGrid[i][j] = 1;
+						vec[j] = vec[j];
+                    //cout<<"2 vec["<<j<<"]"<<vec[j]<<endl;
 					continue;
 				}
 				if (obstacleGrid[i][j] != 0)
-					obstacleGrid[i][j] = 0;
+					vec[j] = 0;
 				else 
-					obstacleGrid[i][j] = obstacleGrid[i][j-1] + obstacleGrid[i-1][j];
+					vec[j] += vec[j-1];
 			}
 		}
-		return obstacleGrid[m-1][n-1];
+		return vec[n-1];
     }
 };
 int main()
