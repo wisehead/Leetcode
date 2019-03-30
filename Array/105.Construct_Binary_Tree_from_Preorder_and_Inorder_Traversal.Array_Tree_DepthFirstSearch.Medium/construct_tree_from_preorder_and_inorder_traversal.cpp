@@ -26,20 +26,24 @@ struct TreeNode {
 };
 class Solution {
 public:
+    TreeNode* bt(vector<int>::iterator pre_i, vector<int>::iterator pre_j, vector<int>::iterator in_i, vector<int>::iterator in_j) {
+		if (pre_i == pre_j || in_i == in_j) return NULL;
+		int r = *pre_i;
+		TreeNode* root = new TreeNode(r);
+		vector<int>::iterator result = find(in_i, in_j, r); 
+		if (result == in_j) return root;
+		int size = result - in_i;
+		root->left = bt(pre_i+1, pre_i + 1 + size, in_i, result);
+		root->right = bt(pre_i+1+size, pre_j, result+1, in_j);
+		return root;
+    }
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
 		if (preorder.empty() || inorder.empty()) return NULL;
-		int r = preorder[0];
-		TreeNode* root = new TreeNode(r);
-		vector<int>::iterator result = find(inorder.begin(), inorder.end(), r); 
-		if (result == inorder.end()) return root;
-
-		vector<int> in_l(inorder.begin(), result);
-		vector<int> in_r(result+1, inorder.end());
-		vector<int> pre_l(preorder.begin()+1, preorder.begin()+1+in_l.size());
-		vector<int> pre_r(preorder.begin()+1+in_l.size(), preorder.end());
-		root->left = buildTree(pre_l, in_l);
-		root->right = buildTree(pre_r, in_r);
-		return root;
+		vector<int>::iterator pre_i = preorder.begin(); 
+		vector<int>::iterator pre_j = preorder.end(); 
+		vector<int>::iterator in_i = inorder.begin();
+		vector<int>::iterator in_j = inorder.end();
+		return bt(pre_i, pre_j, in_i, in_j);
     }
 };
 int main()
