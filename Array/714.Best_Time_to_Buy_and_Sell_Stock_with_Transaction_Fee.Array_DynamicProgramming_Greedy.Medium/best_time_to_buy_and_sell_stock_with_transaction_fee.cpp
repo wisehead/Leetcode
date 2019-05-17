@@ -9,100 +9,32 @@
 #include <vector>
 #include <stack>
 using namespace std;
+/*
+Definition:
+hold[i] - the maximum profit you can earn if you have to hold at day[i]
+sold[i] - the maximum profit you can earn if you have to sold at day[i]
+
+Formula:
+hold[i] = max(hold[i - 1], sold[i - 1] - p[i])       // if hold at [i-1], no op; if sold at [i-1], buy at [i] with cost of p[i];
+sold[i] = max(sold[i - 1], hold[i - 1] + p[i] - fee) // if sold at [i-1], no op; if hold at [i-1], sell at [i] with gain of p[i] - fee;
+
+Initialization:
+hold[0] = 0 - price[0];  // buy shares with cost of p[0];
+sold[0] = 0;             // no op no cost;
+ */
 class Solution {
 public:
-	void printVec(vector<int> vec) {
-		for (auto e: vec)
-			cout<<e<<"	";
-		cout<<endl;
-	}
-    void getVec(vector<int>& prices, vector<int>& vec) {
-		int n = prices.size();
-		int buy_state = 1;
-		int i = 0;
-		int buy_price = INT_MAX;
-		int sell_price = INT_MAX;
-		while (i < n)
-		{
-			if (buy_state == 1)
-			{
-                buy_price = prices[i];
-				i++;
-				while (i < n && prices[i] <= prices[i-1])
-				{
-					buy_price = prices[i];
-					i++;
-				}
-				if (i == n) break;
-                //cout<<"buy_price:"<<buy_price<<endl;
-				vec.push_back(buy_price);
-				buy_state = 0;
-			}
-			else
-			{
-				sell_price = prices[i];
-				i++;
-				while (i < n && prices[i] >= prices[i-1])
-				{
-					sell_price = prices[i];
-					i++;
-				}
-				vec.push_back(sell_price);
-                //cout<<"sell_price:"<<sell_price<<endl;
-				buy_state = 1;
-			}
+    int maxProfit(vector<int>& p, int fee) {
+        int n = p.size();
+        if (n < 2) return 0;
+        vector<int> hold(n, 0), sold(n, 0);
+        hold[0] = -p[0];
+        for (int i = 1; i < n; i++) {
+            hold[i] = max(hold[i - 1], sold[i - 1] - p[i]);
+            sold[i] = max(sold[i - 1], hold[i - 1] - fee + p[i]);
+        }
 
-		}
-		return;
-    }
-    int maxProfit(vector<int>& prices, int fee) {
-        vector<int> vec;
-        getVec(prices, vec);
-		int buy_price = INT_MAX;
-		int sell_price = INT_MAX;
-		int profit = 0;
-        printVec(vec);
-        if (vec.size() < 2) return 0;
-		for (int i = 0; i < vec.size() - 1; )
-		{
-			buy_price = vec[i];
-			sell_price = vec[i+1];
-			if (sell_price - buy_price <= fee)
-			{
-				if (i == vec.size() - 2) 
-                {
-                    vec.erase(vec.begin() + i, vec.begin() + i + 1);
-                    printVec(vec);
-                    break;
-                }
-				if (vec[i+2] > vec[i])
-					vec.erase(vec.begin() + i + 1, vec.begin() + i + 3);
-				else
-					vec.erase(vec.begin() + i, vec.begin() + i + 2);
-                printVec(vec);
-			}
-			else
-				i += 2;
-		}
-		printVec(vec);
-		for (int i = 2; i < vec.size(); i++)
-		{
-            //cout<<"vec[i]"<<vec[i]<<"   vec[i-1]:"<<vec[i-1]<<endl;
-			if (vec[i] < vec[i-1] && vec[i-1] - vec[i] <= fee)
-            {
-				vec.erase(vec.begin() + i - 1, vec.begin() + i + 1);
-                //cout<<"vec[i]"<<vec[i]<<"   vec[i-1]:"<<vec[i-1]<<endl;
-            }
-		}
-		printVec(vec);
-		for (int i = 0; i < vec.size() - 1; i += 2)
-		{
-			buy_price = vec[i];
-			sell_price = vec[i+1];
-			profit += (sell_price - buy_price - fee);
-			//cout<<"in func() profit:"<<profit<<endl;
-		}
-		return profit;
+        return sold[n - 1];
     }
 };
 int main()
