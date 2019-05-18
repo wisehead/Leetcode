@@ -23,6 +23,13 @@ public:
 		{
 			_ss.insert(e);
 		}
+		if (_ss.size() == 1)
+		{
+			int k = 0;
+			while (k < A.size() && k < B.size() && A[k] == B[k])
+				k++;
+			if (k==B.size() || k==A.size()) return k;
+		}
 		for (int i = 0; i < B.size(); i++)
 		{
 			int x = B[i];
