@@ -14,10 +14,15 @@ public:
 		int cnt = 0;
 		for (auto e: words)
 		{
-			int ret = S.find(e, 0);
-			if (ret != string::npos)
-				cnt++;
-		}
+			int ret = 0;
+			for (auto c: e)
+			{
+				ret = S.find(c, ret);
+				if (ret == string::npos) break;
+                ret++;
+			}
+			if (ret != string::npos) cnt++;
+		} 
 		return cnt;
     }
 };
