@@ -14,21 +14,24 @@ public:
     int numFriendRequests(vector<int>& ages) {
 		int cnt = 0;
 		sort(ages.begin(), ages.end());
-		for (int i = 0; i < ages.size(); i++)
+        vector<int> vec(ages);
+        int n = ages.size();
+        for (int i = 0; i < n; i++)
+            vec[i] = ages[i] * 0.5 + 7;        
+        
+		for (int i = 0; i < n; i++)
 		{
             if (ages[i] > 14)
             {
-			    for (int j = i+1; j < ages.size(); j++)
+			    for (int j = i+1; j < n; j++)
 			    {
-				    if (ages[j] != ages[i])
-					    break;
+				    if (ages[j] != ages[i]) break;
 				    cnt++;
 			    }
             }
-			for (int j = 0; j < i; j++)
+			for (int j = i-1; j >= 0; j--)
 			{
-				if (ages[j] <= 0.5 * ages[i] + 7)
-					continue;
+				if (ages[j] <= vec[i]) break;
 				cnt++;
 			}
 		}
