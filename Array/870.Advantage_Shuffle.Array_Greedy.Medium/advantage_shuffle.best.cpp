@@ -10,6 +10,16 @@
 #include <algorithm>
 #include <map>
 using namespace std;
+/*
+
+Count elements in A to a map m.
+For each element in B, find the least bigger element in map m.
+Otherwise, we'll take the smallest element.
+Then we update the m.
+
+Time Complexity:
+O(NlogN)
+ */
 class Solution {
 public:
     vector<int> advantageCount(vector<int> A, vector<int> B) {
