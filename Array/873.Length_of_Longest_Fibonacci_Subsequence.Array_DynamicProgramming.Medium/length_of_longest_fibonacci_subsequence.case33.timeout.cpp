@@ -33,7 +33,7 @@ public:
                     first = false;
                 }
 				else cnt++;
-				M[vec] = cnt;
+                M[vec] = cnt;
 				a = b;
 				b = c;
 				c = a + b;
