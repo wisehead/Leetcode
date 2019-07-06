@@ -12,21 +12,6 @@ class Solution {
 public:
     int maxWidthRamp(vector<int>& A) {
 		int n = A.size();
-		int max_width = 0;
-		for (int i = 0; i < n; i++)
-		{
-			for (int j = n -1; j > i; j--)
-			{
-				if (A[j] >= A[i])
-				{
-					if (j - i > max_width)
-						max_width = j - i;
-					break;
-				}
-			}
-		}
-		return max_width;
-		/*
 		vector<int> maxv(n, 0);
 		int top = A[n-1];
 		int max_width = 0;
@@ -36,16 +21,14 @@ public:
 				top = A[i];
 			maxv[i] = top;
 		}
-		for (int i = 0; i < n; i++)
+		for (int i = 0; i < n - 1; i++)
 		{
-			for (int j = i+1; j < n; j++)
-			{
-				if (maxv[j] >= A[i])
-					continue;
-				break;
-			}
+			int pos = upper_bound(maxv.begin()+i+1, maxv.end(), A[i], greater<int>()) - maxv.begin();
+			int delta = pos - 1 - i;
+			if (delta > max_width)
+				max_width = delta;
 		}
-		*/
+		return max_width;
 
     }
 };
