@@ -8,14 +8,15 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <set>
 using namespace std;
 class Solution {
 public:
-    void print_vec(vector<int>& vec)
+    void print_set(set<int>& s)
     {
-        vector<int>::iterator it;
+        set<int>::iterator it;
         cout << "the results is:"<< endl;
-        for (it = vec.begin(); it != vec.end(); it++)
+        for (it = s.begin(); it != s.end(); it++)
         {
             cout << *it << " ";
         }
@@ -23,35 +24,48 @@ public:
     }
 
     int findJudge(int N, vector<vector<int>>& trust) {
-		vector<int> ss;
+        if (trust.empty() && N ==1) return 1;
+		set<int> ss;
+        set<int> s;
 		int index = 0;
-		bool one_round = true;
 		for (int i = 0; i < trust.size(); i++)
 		{
 			if (trust[i][0] == trust[0][0])
-				ss.push_back(trust[i][1]);
+				ss.insert(trust[i][1]);
 		}
 		for (int i = 0; i < trust.size(); i++) {
-			vector<int> s;
-		    vector<int> c;
+			
+		    //vector<int> c;
 			vector<int> vec = trust[i];
 			if (i == 0) index = vec[0];
 			if (vec[0] == index)
 			{
-				s.push_back(vec[1]);
+				if (ss.count(vec[1]))
+					s.insert(vec[1]);
 			}
 			else
 			{
-				one_round = false;
 				index = vec[0];
-				set_intersection(ss.begin(), ss.end(), s.begin(), s.end(), c.begin());
-				print_vec(c);
-				ss.swap(c);
+                if (s.empty()) return -1;
+				ss.swap(s);
+                s.clear();
+                if (ss.count(vec[1]))
+					s.insert(vec[1]);
+            
 			}
+			if (i == trust.size() - 1)
+            {
+                if (s.empty()) return -1;
+                ss.swap(s);
+            }
+				
+            cout<<"i:"<<i<<"    ss is:"<<endl;
+			print_set(ss);
+            cout<<"s is:"<<endl;
+            print_set(s);
 		}
-		print_vec(ss);
 		if (ss.size() == 1)
-			return ss[0];
+			return *ss.begin();
 		return -1;
     }
 };
