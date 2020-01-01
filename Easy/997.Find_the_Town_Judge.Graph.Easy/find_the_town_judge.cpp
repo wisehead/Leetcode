@@ -28,6 +28,7 @@ public:
 		set<int> ss;
         set<int> s;
 		int index = 0;
+		sort(trust.begin(), trust.end());
 		for (int i = 0; i < trust.size(); i++)
 		{
 			if (trust[i][0] == trust[0][0])
@@ -59,10 +60,10 @@ public:
                 ss.swap(s);
             }
 				
-            cout<<"i:"<<i<<"    ss is:"<<endl;
-			print_set(ss);
-            cout<<"s is:"<<endl;
-            print_set(s);
+            //cout<<"i:"<<i<<"    ss is:"<<endl;
+			//print_set(ss);
+            //cout<<"s is:"<<endl;
+            //print_set(s);
 		}
 		if (ss.size() == 1)
 			return *ss.begin();
