@@ -29,41 +29,34 @@ public:
         set<int> s;
 		int index = 0;
 		sort(trust.begin(), trust.end());
-		for (int i = 0; i < trust.size(); i++)
+		if (!trust.empty()) index = trust[0][0];
+
+		int j = 0;
+		for (int j = 0; j < trust.size(); j++)
 		{
-			if (trust[i][0] == trust[0][0])
-				ss.insert(trust[i][1]);
-		}
-		for (int i = 0; i < trust.size(); i++) {
-			
-		    //vector<int> c;
-			vector<int> vec = trust[i];
-			if (i == 0) index = vec[0];
-			if (vec[0] == index)
-			{
-				if (ss.count(vec[1]))
-					s.insert(vec[1]);
-			}
+			if (trust[j][0] == trust[0][0])
+				ss.insert(trust[j][1]);
 			else
+				break;
+		}
+
+		for (int i = j; i < trust.size(); i++) {
+			vector<int> vec = trust[i];
+			if (vec[0] != index)
 			{
 				index = vec[0];
                 if (s.empty()) return -1;
 				ss.swap(s);
                 s.clear();
-                if (ss.count(vec[1]))
-					s.insert(vec[1]);
-            
 			}
+			if (ss.count(vec[1]))
+				s.insert(vec[1]);
+
 			if (i == trust.size() - 1)
             {
                 if (s.empty()) return -1;
                 ss.swap(s);
             }
-				
-            //cout<<"i:"<<i<<"    ss is:"<<endl;
-			//print_set(ss);
-            //cout<<"s is:"<<endl;
-            //print_set(s);
 		}
 		if (ss.size() == 1)
 			return *ss.begin();
