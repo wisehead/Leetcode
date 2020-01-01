@@ -8,56 +8,31 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <map>
 #include <set>
 using namespace std;
 class Solution {
 public:
-    void print_set(set<int>& s)
-    {
-        set<int>::iterator it;
-        cout << "the results is:"<< endl;
-        for (it = s.begin(); it != s.end(); it++)
-        {
-            cout << *it << " ";
-        }
-        cout<<endl;
-    }
-
     int findJudge(int N, vector<vector<int>>& trust) {
         if (trust.empty() && N ==1) return 1;
+		map<int, int> mm;
 		set<int> ss;
-        set<int> s;
-		int index = 0;
-		sort(trust.begin(), trust.end());
-		if (!trust.empty()) index = trust[0][0];
-
-		int j = 0;
-		for (int j = 0; j < trust.size(); j++)
-		{
-			if (trust[j][0] == trust[0][0])
-				ss.insert(trust[j][1]);
+		set<int> rs;
+		for (int i = 0; i < trust.size(); i++) {
+			vector<int> &vec = trust[i];
+			rs.insert(vec[0]);
+			if (mm.count(vec[1]))
+				mm[vec[1]]++;
 			else
-				break;
+				mm[vec[1]] = 1;
+			if (mm[vec[1]] == N - 1)
+				ss.insert(vec[1]);
 		}
-
-		for (int i = j; i < trust.size(); i++) {
-			vector<int> vec = trust[i];
-			if (vec[0] != index)
-			{
-				index = vec[0];
-                if (s.empty()) return -1;
-				ss.swap(s);
-                s.clear();
-			}
-			if (ss.count(vec[1]))
-				s.insert(vec[1]);
-
-			if (i == trust.size() - 1)
-            {
-                if (s.empty()) return -1;
-                ss.swap(s);
-            }
-		}
+        
+        for (auto e: ss)
+        {
+            if (rs.count(e)) ss.erase(e);
+        }
 		if (ss.size() == 1)
 			return *ss.begin();
 		return -1;
