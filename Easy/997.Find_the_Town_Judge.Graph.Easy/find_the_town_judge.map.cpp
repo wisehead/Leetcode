@@ -11,27 +11,29 @@
 #include <map>
 #include <set>
 using namespace std;
-/*
-Intuition:
-Consider trust as a graph, all pairs are directed edge.
-The point with in-degree - out-degree = N - 1 become the judge.
-
-Explanation:
-Count the degree, and check at the end.
-
-Time Complexity:
-Time O(T + N), space O(N)
-*/
 class Solution {
 public:
     int findJudge(int N, vector<vector<int>>& trust) {
-        vector<int> count(N + 1, 0);
-        for (auto& t : trust)
-            count[t[0]]--, count[t[1]]++;
-        for (int i = 1; i <= N; ++i) {
-            if (count[i] == N - 1) return i;
-        }
-        return -1;
+        if (trust.empty() && N ==1) return 1;
+		map<int, int> mm;
+		set<int> ss;
+		set<int> rs;
+		for (int i = 0; i < trust.size(); i++) {
+			int x = trust[i][1];
+			rs.insert(trust[i][0]);
+            
+			if (mm.count(x)) mm[x]++;
+			else mm[x] = 1;
+            
+			if (mm[x] == N - 1)
+				ss.insert(x);
+		}
+        
+        for (auto e: ss)
+            if (rs.count(e)) ss.erase(e);
+        
+		if (ss.size() == 1) return *ss.begin();
+		return -1;
     }
 };
 
