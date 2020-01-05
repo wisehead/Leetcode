@@ -7,31 +7,37 @@
  *******************************************************************************/
 #include <iostream>
 #include <unordered_map>
-#include <vector>
 using namespace std;
 class Solution {
 public:
-    // only contains digits 
     string getHint(string secret, string guess) {
-        int aCnt = 0;
-        int bCnt = 0;
-        vector<int> sVec(10, 0); // 0 ~ 9 for secret
-        vector<int> gVec(10, 0); // 0 ~ 9 for guess 
-        if (secret.size() != guess.size() || secret.empty()) { return "0A0B"; }
-        for (int i = 0; i < secret.size(); ++i) {
-            char c1 = secret[i]; char c2 = guess[i];
-            if (c1 == c2) {
-                ++aCnt; 
-            } else {
-                ++sVec[c1-'0'];
-                ++gVec[c2-'0'];
-            }
-        }
-        // count b 
-        for (int i = 0; i < sVec.size(); ++i) {
-            bCnt += min(sVec[i], gVec[i]);
-        }
-        return to_string(aCnt) + 'A' + to_string(bCnt) + 'B';
+		int bulls = 0, cows = 0;
+		string res;
+		unordered_map<char, int> m1;
+		for (int i = 0; i < secret.size(); i++)
+		{
+			auto e = secret[i];
+            if (m1.count(e)) m1[e]++;
+			else m1[e] = 1; 
+            if (guess[i] == e)
+            {
+                bulls++;
+				m1[e]--;
+                guess.erase(guess.begin() + i);
+                secret.erase(secret.begin() + i);
+                i--;
+			}
+		}
+		for (auto e : guess)
+		{
+			if (m1.count(e) && m1[e] > 0)
+			{
+                m1[e]--;
+				cows++;
+			}
+		}
+		res = to_string(bulls) + "A" + to_string(cows) + "B";
+		return res;
     }
 };
 int main()
