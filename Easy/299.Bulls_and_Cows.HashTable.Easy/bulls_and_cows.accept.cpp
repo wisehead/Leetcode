@@ -13,32 +13,34 @@ public:
     string getHint(string secret, string guess) {
 		int bulls = 0, cows = 0;
 		string res;
-		unordered_map<char, int> m1;
 		for (int i = 0; i < secret.size(); i++)
 		{
-			auto e = secret[i];
-            if (m1.count(e)) m1[e]++;
-			else m1[e] = 1; 
-            if (guess[i] == e)
-            {
-                bulls++;
-				m1[e]--;
-                guess.erase(guess.begin() + i);
-                secret.erase(secret.begin() + i);
-                i--;
+			if (secret[i] == guess[i])
+			{
+				bulls++;
+				secret.erase(secret.begin()+i);
+				guess.erase(guess.begin()+i);
+				i--;
 			}
 		}
-        cout<<"middle secret:"<<secret<<"	guess:"<<guess<<endl;
+
+		//cout<<"middle secret:"<<secret<<"	guess:"<<guess<<endl;
+		unordered_map<char, int> m1;
+		for (auto e : secret)
+		{
+			if (m1.count(e)) m1[e]++;
+			else m1[e] = 1; 
+		}
+
 		for (auto e : guess)
 		{
-            cout<<"e:"<<e<<endl;
 			if (m1.count(e) && m1[e] > 0)
 			{
-                cout<<"m1[e]"<<m1[e]<<endl;
-                m1[e]--;
+				m1[e]--;
 				cows++;
 			}
 		}
+
 		res = to_string(bulls) + "A" + to_string(cows) + "B";
 		return res;
     }
