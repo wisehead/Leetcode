@@ -28,13 +28,10 @@ public:
                 i--;
 			}
 		}
-        cout<<"middle secret:"<<secret<<"	guess:"<<guess<<endl;
 		for (auto e : guess)
 		{
-            cout<<"e:"<<e<<endl;
 			if (m1.count(e) && m1[e] > 0)
 			{
-                cout<<"m1[e]"<<m1[e]<<endl;
                 m1[e]--;
 				cows++;
 			}
