@@ -17,7 +17,7 @@ public:
 			if (i+1 < n && stones[i+1] - stones[i] > 1)
 				return i;
 		}
-		return 0;
+		return -1;
 	}
 
 	int getLastGap(vector<int>& stores) {
@@ -27,20 +27,29 @@ public:
 			if (i-1 >= 0 && stones[i] - stones[i-1] > 1)
 				return i-1;
 		}
-		return 0;
+		return -1;
 	}
 
-	int fixOneGap(vector<int>& stores, int gap_start) {
-		int gap_size = stores[gap_start+1] - stores[gap_start];
+	int fixOneGapMin(vector<int>& stores, int gap_start) {
+		int gap_size = stores[gap_start+1] - stores[gap_start] - 1;
+		int left_size = gap_start;
+		int right_size = stores.size() - 1 - gap_start;
+		int elem_size = min(left_size, right_size);
+		if (elem_size == 1) elem_size = 2;
 		if (gap_size == 1) return 1;
-		return 2;
+		return min(gap_size, elem_size);
+	}
+
+	int fixOneGapMax(vector<int>& stores, int gap_start) {
+		int gap_size = stores[gap_start+1] - stores[gap_start] - 1;
+		return gap_size;
 	}
 
     vector<int> numMovesStonesII(vector<int>& stones) {
 		int steps = 0;
 		sort(stones.begin(), stones.end());
 		int first = getFistGap(stones);
-		if (!first) return steps;
+		if (first == -1) return steps;
 		int last = getLastGap(stones);
 		int first_gap = stones[first+1] - stones[first];
 		int last_gap = stones[last+1] - stones[last];
