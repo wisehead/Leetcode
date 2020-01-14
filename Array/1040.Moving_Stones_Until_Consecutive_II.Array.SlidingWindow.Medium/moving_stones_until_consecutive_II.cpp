@@ -8,51 +8,76 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+/*
+解题思路：
+题目是上周第一题的扩展，但是有点不同。
+
+由题意可知，每进行一轮操作，石子的左右端点的距离会缩短，一轮一轮收敛。最后会石子都紧邻游戏结束。
+
+举个例子：
+
+初始时有 8 颗石子，在数轴上的有石子的刻度为：
+
+4，6，8，9，15，16，19，20
+
+最大值求解方法：
+
+石子可以放置的空间，等于左右两端石子之间的未占用位置。在例子中，一共有 20-4+1-8 个位置。
+
+石子覆盖的线段长度是 20-4 个，加上一个端点的位置即 20-4+1，再减去已经占用的 8 个位置。
+
+用公式表示为：
+
+s1=stones[n-1]-stones[0]+1-ns1=stones[n−1]−stones[0]+1−n。
+
+但是第一次移动的左端点或右端点的石子后，这个移动的石子和它相邻的那颗石子之间的空间，后面就不能被放置了，因为与他相邻的那个点变为端点，他们之间的位置不可以被放置了。
+
+例如第一步移动了 4，那么 5 这个位置就不可能放置石子了。所以要计算不能被访问的空间
+
+s2=min(stones[n-1]-stones[n-2]-1, stones[1]-stones[0] -1)s2=min(stones[n−1]−stones[n−2]−1,stones[1]−stones[0]−1)。
+
+最大值为 s1-s2。因为在后面的步骤里，我们都可以做出策略，让每一轮左右端点的差值只减 1。
+
+最小值求解方法：
+
+如果最后游戏结束，那么一定有 nn 个连续坐标摆满了石子。如果我们要移动最少，必定要找一个石子序列，使得在 nn 大小连续的坐标内，初始时有最多的石子。
+
+设想有个尺子，上面有 nn 个刻度点，我们用这个尺子在石子从最左边到最右边移动，每动一次都查看下在尺子范围内有 mm 个石子，那么要使这个区间填满，就需要移动 n-mn−m 次。
+
+只要在尺子外部有石子，就有策略填满尺子内的。
+
+这些次数中最小的就为虽少次数。
+
+但是有一种特例：
+1，2，3，4，7
+
+这种 1-4 是最好的序列，但是 7 不能移动到端点，只能 1 先移动到 6，然后 7 移动到 5 解决，这种情况要用 2 步。就是尺子内的石子都是连续的，中间没空洞，只在边上有空，要用 2 次。
+
+作者：owenzzz
+链接：https://leetcode-cn.com/problems/moving-stones-until-consecutive-ii/solution/jie-ti-si-lu-by-owenzzz/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+ */
 class Solution {
 public:
-	int getFirstGap(vector<int>& stores) {
-		int n = stones.size();
-		for (int i = 0; i < n; i++)
-		{
-			if (i+1 < n && stones[i+1] - stones[i] > 1)
-				return i;
-		}
-		return -1;
-	}
-
-	int getLastGap(vector<int>& stores) {
-		int n = stones.size();
-		for (int i = n - 1; i >= 0; i--)
-		{
-			if (i-1 >= 0 && stones[i] - stones[i-1] > 1)
-				return i-1;
-		}
-		return -1;
-	}
-
-	int fixOneGapMin(vector<int>& stores, int gap_start) {
-		int gap_size = stores[gap_start+1] - stores[gap_start] - 1;
-		int left_size = gap_start;
-		int right_size = stores.size() - 1 - gap_start;
-		int elem_size = min(left_size, right_size);
-		if (elem_size == 1) elem_size = 2;
-		if (gap_size == 1) return 1;
-		return min(gap_size, elem_size);
-	}
-
-	int fixOneGapMax(vector<int>& stores, int gap_start) {
-		int gap_size = stores[gap_start+1] - stores[gap_start] - 1;
-		return gap_size;
-	}
-
     vector<int> numMovesStonesII(vector<int>& stones) {
-		int steps = 0;
-		sort(stones.begin(), stones.end());
-		int first = getFistGap(stones);
-		if (first == -1) return steps;
-		int last = getLastGap(stones);
-		int first_gap = stones[first+1] - stones[first];
-		int last_gap = stones[last+1] - stones[last];
+        sort(stones.begin(),stones.end());
+        int n = stones.size();
+        int mx = stones[n - 1] - stones[0] + 1 - n;
+        mx -= min(stones[n-1]-stones[n-2] - 1, stones[1]-stones[0] -1);
+        int mi = mx;
+        int i = 0;
+        int j = 0;
+        for(i = 0; i < n; ++i)
+        {
+            while(j + 1 < n && stones[j + 1] - stones[i] + 1 <= n)
+                ++j;
+            int cost = n - (j - i + 1);
+            if(j - i + 1 == n - 1 && stones[j] - stones[i] + 1 == n - 1)
+                cost = 2;
+            mi = min(mi, cost);
+        }
+        return vector<int>{mi, mx};
     }
 };
 int main()
