@@ -27,8 +27,9 @@ public:
 			cout<<"*it:"<<*it<<endl;
 			if (*it == 0)
 			{
-				arr.pop_back();
 				it++;
+				if (it == arr.end()) break;
+				arr.pop_back();
 				it = arr.insert(it, 0);
 			}
 			print_vec(arr);
@@ -37,10 +38,11 @@ public:
 };
 int main()
 {
-	int arr[] = {1,0,2,3,0,4,5,0};
+	//int arr[] = {1,0,2,3,0,4,5,0};
+	int arr[] = {0,0,0,0,0,0,0};
 	vector<int> vec(arr,arr+7);
 	Solution sol;
-	//sol.print_vec(vec);
+	sol.print_vec(vec);
 	sol.duplicateZeros(vec);
-	//sol.print_vec(vec);
+	sol.print_vec(vec);
 }
