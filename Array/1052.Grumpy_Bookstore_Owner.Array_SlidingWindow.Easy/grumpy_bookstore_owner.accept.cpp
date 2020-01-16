@@ -11,25 +11,16 @@ using namespace std;
 class Solution {
 public:
     int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int X) {
-		int delta = 0, sum = 0, cnt = 0;
+		int delta = 0, sum = 0;
 		int n = customers.size();
 		for (int i = 0; i < n - X + 1; i++)
 		{
-            if (i==0)
-            {
-                for (int j = i; j < i+X; j++)
-			    {
-			    	if (grumpy[j] == 1)
-				    	cnt += customers[j];
-			    }
-            }
-            else
-            {
-			    if (grumpy[i-1])
-			    	cnt -= customers[i-1];
-			    if (grumpy[i+X-1])
-			    	cnt += customers[i+X-1];
-            }
+			int cnt = 0;
+			for (int j = i; j < i+X; j++)
+			{
+				if (grumpy[j] == 1)
+					cnt += customers[j];
+			}
 			delta = max(delta, cnt);
             //cout<<"i:"<<i<<"    cnt:"<<cnt<<endl;
 		}
