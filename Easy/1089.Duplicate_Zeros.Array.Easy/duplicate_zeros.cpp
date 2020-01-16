@@ -20,27 +20,25 @@ public:
         }
         cout<<endl;
     }
-    void duplicateZeros(vector<int>& arr) {
-		vector<int>::iterator it;
-		for (it = arr.begin(); it != arr.end(); it++)
-		{
-			cout<<"*it:"<<*it<<endl;
-			if (*it == 0)
-			{
-				it++;
-				if (it == arr.end()) break;
-				arr.pop_back();
-				it = arr.insert(it, 0);
-			}
-			print_vec(arr);
-		}
+    void duplicateZeros(vector<int>& A) {
+        int n = A.size(), j = n + count(A.begin(), A.end(), 0);
+        for (int i = n - 1; i >= 0; --i) {
+        	cout<<"i:"<<i<<endl;
+            if (--j < n)
+                A[j] = A[i];
+            cout<<"i:"<<i<<"j:"<<j<<endl;
+            if (A[i] == 0 && --j < n)
+                A[j] = 0;
+            cout<<"i:"<<i<<"j:"<<j<<endl;
+            print_vec(A);
+        }
     }
 };
 int main()
 {
-	//int arr[] = {1,0,2,3,0,4,5,0};
-	int arr[] = {0,0,0,0,0,0,0};
-	vector<int> vec(arr,arr+7);
+	int arr[] = {1,0,2,3,0,4,5,0};
+	//int arr[] = {0,0,0,0,0,0,0};
+	vector<int> vec(arr,arr+8);
 	Solution sol;
 	sol.print_vec(vec);
 	sol.duplicateZeros(vec);
