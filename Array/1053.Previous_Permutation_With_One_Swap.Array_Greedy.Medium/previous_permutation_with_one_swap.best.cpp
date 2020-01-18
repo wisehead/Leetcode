@@ -11,23 +11,13 @@ using namespace std;
 class Solution {
 public:
     vector<int> prevPermOpt1(vector<int>& A) {
-		int n = A.size();
-		for (int i = n - 1; i >= 0; i--)
-		{
-			for (int j = i - 1; j >= 0; j--)
-			{
-				if (A[j] <= A[i])
-					break;
-				if (A[j] > A[i])
-				{
-					int tmp = A[i];
-					A[i] = A[j];
-					A[j] = tmp;
-					return A;
-				}
-			}
-		}
-		return A;
+        int n = A.size(), left = n - 2, right = n - 1;
+        while (left >= 0  && A[left] <= A[left + 1]) left--;
+        if (left < 0) return A;
+        while (A[left] <= A[right]) right--;
+        while (A[right - 1] == A[right]) right--;
+        swap(A[left], A[right]);
+        return A;
     }
 };
 int main()
