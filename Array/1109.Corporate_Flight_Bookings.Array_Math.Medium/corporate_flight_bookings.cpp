@@ -12,13 +12,40 @@ class Solution {
 public:
     vector<int> corpFlightBookings(vector<vector<int>>& bookings, int n) {
 		vector<int> vec(n, 0);
-		for (auto e : bookings)
+		int size = bookings.size();
+		sort(bookings.begin(), bookings.end());
+		int start = 0;
+		for (int i = 1; i <= n; i++)
 		{
-			for (int i = e[0]-1; i <= e[1]-1; i++)
-            {
-                //cout<<"vec["<<i<<"]:"<<vec[i]<<endl;
-				vec[i] += e[2];
-            }
+            cout<<"--------i:"<<i<<endl;
+			for (int j = start; j < size; j++)
+			{
+                cout<<"--------j:"<<j<<endl;
+				vector<int> &b = bookings[j];
+                cout<<"b[0]"<<b[0]<<"   b[1]:"<<b[1]<<" b[2]:"<<b[2]<<endl;
+				if (i < b[0])
+                {
+					break;
+                    cout<<1<<endl;
+                }
+				if (i == b[0])
+                {
+					vec[i-1] += b[2];
+                    cout<<2<<endl;
+                }
+				else if (i <= b[1]) //i > j
+                {
+					vec[i-1] += b[2];
+                    cout<<3<<endl;
+                }
+				else
+				{
+					start = j+1;
+                    cout<<4<<endl;
+				}
+			}
+            cout<<"vec["<<i-1<<"]"<<vec[i-1]<<endl;
+            
 		}
 		return vec;
     }
