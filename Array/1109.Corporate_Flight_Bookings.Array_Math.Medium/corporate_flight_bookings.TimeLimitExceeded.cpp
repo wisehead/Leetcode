@@ -17,35 +17,34 @@ public:
 		int start = 0;
 		for (int i = 1; i <= n; i++)
 		{
-            //cout<<"--------i:"<<i<<endl;
+            cout<<"--------i:"<<i<<endl;
 			for (int j = start; j < size; j++)
 			{
-                //cout<<"--------j:"<<j<<endl;
+                cout<<"--------j:"<<j<<endl;
 				vector<int> &b = bookings[j];
-                //cout<<"b[0]"<<b[0]<<"   b[1]:"<<b[1]<<" b[2]:"<<b[2]<<endl;
+                cout<<"b[0]"<<b[0]<<"   b[1]:"<<b[1]<<" b[2]:"<<b[2]<<endl;
 				if (i < b[0])
                 {
 					break;
-                    //cout<<1<<endl;
+                    cout<<1<<endl;
                 }
 				if (i == b[0])
                 {
 					vec[i-1] += b[2];
-                    //cout<<2<<endl;
+                    cout<<2<<endl;
                 }
 				else if (i <= b[1]) //i > j
                 {
 					vec[i-1] += b[2];
-                    //cout<<3<<endl;
+                    cout<<3<<endl;
                 }
-				else//i > b[1]
+				else
 				{
-					if (j == start)
-                        start++;
-                    //cout<<4<<endl;
+					start = j+1;
+                    cout<<4<<endl;
 				}
 			}
-            //cout<<"vec["<<i-1<<"]"<<vec[i-1]<<endl;
+            cout<<"vec["<<i-1<<"]"<<vec[i-1]<<endl;
             
 		}
 		return vec;
