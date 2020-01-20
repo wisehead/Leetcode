@@ -17,7 +17,8 @@ public:
 		{
 			int a = nums[i];
 			int b = nums[i+1];
-			res.insert(res.end(), a, b);
+			for (int j = 0; j < a; j++)
+				res.push_back(b);
 		}
 		return res;
     }
