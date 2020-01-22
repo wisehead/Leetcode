@@ -26,6 +26,13 @@ public:
 	}
 
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int superemum = max(nums1.back(), nums2.back())+1;
+        nums1.push_back(superemum);
+        nums2.push_back(superemum);
+        int infinimum = min(nums1[0], nums2[0])-1;
+        nums1.insert(nums1.begin(), infinimum);
+        nums2.insert(nums2.begin(), infinimum);
+        
 		int n1 = nums1.size();
 		int n2 = nums2.size();
 		int target = (n1+n2)/2;
@@ -34,6 +41,7 @@ public:
 		double v1, v2;
 		while (floor(m1) + floor(m2) != target)
 		{
+            cout<<"m1:"<<m1<<"  m2:"<<m2<<endl;
 			v1 = get_val(nums1, m1);
 			v2 = get_val(nums2, m2);
 			if (v1 == v2) break;
