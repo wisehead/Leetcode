@@ -23,19 +23,15 @@ public:
 				cnt += 366;
 			else 
 				cnt += 365;
-			cout<<"i:"<<i<<"	cnt:"<<cnt<<endl;
 		}
-		cout <<"cnt:"<<cnt<<endl;
+		
 		for (int i = 1; i < month; i++)
 		{
 			cnt += months[i-1];
 			if (i == 2 && is_leap_year(year))
 				cnt++;
-			cout<<"i:"<<i<<"	cnt:"<<cnt<<endl;
 		}
-		cout <<"cnt:"<<cnt<<endl;
 		cnt += day;
-		cout <<"cnt:"<<cnt<<endl;
 		return out[cnt  % 7];
     }
 };
