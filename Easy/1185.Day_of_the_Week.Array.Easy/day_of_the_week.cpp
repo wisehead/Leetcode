@@ -14,25 +14,39 @@ public:
 	}
 
     string dayOfTheWeek(int day, int month, int year) {
-		string out[] = {"Thursday", "Friday", "Saturday,""Sunday", "Monday", "Tuesday", "Wednesday"};
+		string out[] = {"Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday"};
 		int months[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 		int cnt = 0;
-		for (int i = 0; i < year; i++)
+		for (int i = 1971; i < year; i++)
 		{
 			if (is_leap_year(i))
 				cnt += 366;
 			else 
 				cnt += 365;
+			cout<<"i:"<<i<<"	cnt:"<<cnt<<endl;
 		}
+		cout <<"cnt:"<<cnt<<endl;
 		for (int i = 1; i < month; i++)
 		{
 			cnt += months[i-1];
 			if (i == 2 && is_leap_year(year))
 				cnt++;
+			cout<<"i:"<<i<<"	cnt:"<<cnt<<endl;
 		}
+		cout <<"cnt:"<<cnt<<endl;
 		cnt += day;
-		return out[day % 7];
+		cout <<"cnt:"<<cnt<<endl;
+		return out[cnt  % 7];
     }
 };
 int main()
-{}
+{
+	Solution sol;
+	//string res = sol.dayOfTheWeek(1,1,1971);
+	//string res = sol.dayOfTheWeek(6,5,1971);
+	//string res = sol.dayOfTheWeek(31,8,2019);
+	string res = sol.dayOfTheWeek(31,8,2019);
+	//string res = sol.dayOfTheWeek(31,8,1990);
+	cout<<"res:"<<res<<endl;
+
+}
