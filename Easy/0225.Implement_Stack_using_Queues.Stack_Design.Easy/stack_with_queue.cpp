@@ -14,7 +14,7 @@ public:
     MyStack() {
 		_top = 0;
     }
-    
+    	
     /** Push element x onto stack. */
     void push(int x) {
 		_m_q.push(x);
