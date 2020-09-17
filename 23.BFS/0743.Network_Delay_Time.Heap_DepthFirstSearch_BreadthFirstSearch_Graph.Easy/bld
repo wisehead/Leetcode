@@ -1,0 +1,2 @@
+#!/bin/zsh
+g++ -g -o out network_delay_time.cpp 
