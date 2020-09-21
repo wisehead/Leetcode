@@ -135,172 +135,84 @@ public:
 
         if (p == NULL || parent == NULL)
             return false;
-
-        if (parent == p)//this is root node;
-        {
-            if (p->left)
-            {
-                Node* q = p;
-                Node* pre = p;
-                p = p->left;
-                while (p->right)
-                {
-                    pre = p;
-                    p = p->right;
-                }
-                p->right = q->right;
-                if (pre != q)
-                {
-                    pre->right = p->left;
-                    if (p != q->left)
-                        p->left = q->left;
-                    else
-                        p->left = NULL;
-                }
-                q->left = q->right = NULL;
-                _root = p;
-                delete q;
-            }
-            else if(p->right)
-            {
-                Node* q = p;
-                Node* pre = p;
-                p = p->right;
-                while (p->left)
-                {
-                    pre = p;
-                    p = p->left;
-                }
-                if (pre != q)
-                {
-                    pre->left = p->right;//bug
-                    if (p != q->right)
-                        p->right = q->right;
-                    else
-                        p->right = NULL;
-                }
-                p->left = q->left;
-                q->left = q->right = NULL;
-                _root = p;
-                delete q;
-            }
-            else
-            {
-                parent->left = NULL;
-                parent->right = NULL;
-                delete p;
-                _root = NULL;
-            }
-        }
-        else if (p == parent->left)
-        {
-            if (p->left)
-            {
-                Node* q = p;
-                Node* pre = p;
-                p = p->left;
-                while (p->right)
-                {
-                    pre = p;
-                    p = p->right;
-                }
-                parent->left = p;
-                p->right = q->right;
-                if (pre != q)
-                {
-                    pre->right = p->left;
-                    if (p != q->left)
-                        p->left = q->left;
-                    else
-                        p->left = NULL;
-                }
-                q->left = q->right = NULL;
-                delete q;
-            }
-            else if(p->right)
-            {
-                Node* q = p;
-                Node* pre = p;
-                p = p->right;
-                while (p->left)
-                {
-                    pre = p;
-                    p = p->left;
-                }
-                parent->left = p;
-                if (pre != q)
-                {
-                    pre->left = p->right;//bug
-                    if (p != q->right)
-                        p->right = q->right;
-                    else
-                        p->right = NULL;
-                }
-                p->left = q->left;
-                q->left = q->right = NULL;
-                delete q;
-            }
-            else
-            {
-                parent->left = NULL;
-                delete p;
-            }
-        }
+        //B_chenhui
+        bool left = false, right = false;
+        if (p == parent->left)
+            left = true;
         else if (p == parent->right)
-        {
-            if (p->left)
-            {
-                Node* q = p;
-                Node* pre = p;
-                p = p->left;
-                while (p->right)
-                {
-                    pre = p;
-                    p = p->right;
-                }
-                parent->right = p;
+            right = true;
 
-                p->right = q->right;
-                if (pre != q)
-                {
-                    pre->right = p->left;
-                    if (p != q->left)
-                        p->left = q->left;
-                    else
-                        p->left = NULL;
-                }
-                q->left = q->right = NULL;
-                delete q;
-            }
-            else if(p->right)
+        if (p->left)
+        {
+            Node* q = p;
+            Node* pre = p;
+            p = p->left;
+            while (p->right)
             {
-                Node* q = p;
-                Node* pre = p;
+                pre = p;
                 p = p->right;
-                while (p->left)
-                {
-                    pre = p;
-                    p = p->left;
-                }
+            }
+
+            if (left)
+                parent->left = p;
+            else if (right)
                 parent->right = p;
-                if (pre != q)
-                {
-                    pre->left = p->right;//bug
-                    if (p != q->right)
-                        p->right = q->right;
-                    else
-                        p->right = NULL;
-                }
-                p->left = q->left;
-                q->left = q->right = NULL;
-                delete q;
-            }
             else
+                _root = p;
+
+            p->right = q->right;
+            if (pre != q)
             {
-                parent->right = NULL;
-                delete p;
+                pre->right = p->left;
+                if (p != q->left)
+                    p->left = q->left;
+                else
+                    p->left = NULL;
             }
+            q->left = q->right = NULL;
+            delete q;
         }
+        else if(p->right)
+        {
+            Node* q = p;
+            Node* pre = p;
+            p = p->right;
+            while (p->left)
+            {
+                pre = p;
+                p = p->left;
+            }
+            if (left)
+                parent->left = p;
+            else if (right)
+                parent->right = p;
+            else
+                _root = p;
+
+            if (pre != q)
+            {
+                pre->left = p->right;//bug
+                if (p != q->right)
+                    p->right = q->right;
+                else
+                    p->right = NULL;
+            }
+            p->left = q->left;
+            q->left = q->right = NULL;
+            delete q;
+        }
+        else
+        {
+            if (left)
+                parent->left = NULL;
+            else if (right)
+                parent->right = NULL;
+            else
+                _root = NULL;
+            delete p;
+        }
+        //E_chenhui
+
         return true;
     }
 
