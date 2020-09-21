@@ -1,2 +1,0 @@
-#!/bin/zsh
-g++ -g -o out design_hashmap.cpp 
