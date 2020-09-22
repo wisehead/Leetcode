@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out two_sum_II.cpp 

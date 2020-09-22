@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out max_depth_of_tree.cpp 
