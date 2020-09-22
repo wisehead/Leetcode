@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out palindrome_linked_list.cpp 

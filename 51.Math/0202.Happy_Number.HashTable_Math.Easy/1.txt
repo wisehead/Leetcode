@@ -1,0 +1,13 @@
+x is:	9;temp is:	1
+x is:	1;temp is:	0
+sum is:	82
+x is:	2;temp is:	8
+x is:	8;temp is:	0
+sum is:	68
+x is:	8;temp is:	6
+x is:	6;temp is:	0
+sum is:	100
+x is:	0;temp is:	10
+x is:	0;temp is:	1
+x is:	1;temp is:	0
+sum is:	1

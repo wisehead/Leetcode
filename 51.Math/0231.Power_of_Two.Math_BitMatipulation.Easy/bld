@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ -g -o out power_of_2.cpp 
