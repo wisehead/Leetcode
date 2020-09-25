@@ -1,2 +1,0 @@
-#!/bin/zsh
-g++ -g -o out desing_linked_list.cpp 
