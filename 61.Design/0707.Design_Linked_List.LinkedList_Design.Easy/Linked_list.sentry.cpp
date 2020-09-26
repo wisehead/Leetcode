@@ -20,7 +20,8 @@ class MyLinkedList {
 public:
     /** Initialize your data structure here. */
     MyLinkedList() {
-        head = tail = nullptr;
+		head = new Node(0);
+        tail = head;
         size = 0;
     }
     
@@ -34,21 +35,17 @@ public:
     /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
     void addAtHead(int val) {
         Node *p = new Node(val);
-        if (head)
-            p->next = head;
-        else
+		p->next = head->next;
+		head->next = p;
+        if (tail == head)
             tail = p;
-        head = p;
         ++size;
     }
     
     /** Append a node of value val to the last element of the linked list. */
     void addAtTail(int val) {
         Node *p = new Node(val);
-        if (tail)
-            tail->next = p;
-        else
-            head = p;
+		tail->next = p;
         tail = p;
         ++size;        
     }
@@ -56,7 +53,7 @@ public:
     Node* find_node(int index, Node**pre = nullptr)
     {
         int cnt = 0;
-        Node *p = head;
+        Node *p = head->next;
         if (pre)
             *pre = head;
         while (cnt < index )//&& p->next
@@ -77,8 +74,8 @@ public:
         Node *p = find_node(index, &pre);
 
         node->next = p;
-        if (pre == p) //head
-            head = node;
+        if (pre == head) //head
+            head->next = node;
         else
             pre->next = node;
         
@@ -94,15 +91,16 @@ public:
         Node *p = find_node(index, &pre);          
         
         Node* tmp = p;
-        if (p == head)
-            head = p->next;
+        //if (p == head->next)
+        if (pre == head)
+            head->next = p->next;
         else
             pre->next = p->next;
         
         if (p==tail)
             tail = pre;
         --size;
-		delete temp;
+		delete tmp;
         
     }
 private:
