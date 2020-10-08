@@ -6,6 +6,7 @@
  *  modified time: 2020/10/08-22:01:05                              
  *******************************************************************************/
 #include <iostream>
+#include <vector>
 using namespace std;
 class Solution {
 public:
@@ -19,21 +20,17 @@ public:
         return string("");
     }
     vector<string> findOcurrences(string text, string first, string second) {
-        cout<<"text length:"<<text.length()<<endl;
-        vector<string> vec;
         vector<string> res;
         text = " " + text;
-        string word = " " + first + " " + second;
+        string word = " " + first + " " + second + " ";
         int pos = 0;
         while (pos != string::npos && pos < text.length()) {
             pos = text.find(word, pos);
-            cout<<"1 pos:"<<pos<<endl;
             if (pos != string::npos) 
             {
-                pos = pos + word.length() + 1;
-                cout<<"2 pos:"<<pos<<endl;
+                pos = pos + word.length() - 1;
                 if (pos < text.length()) {
-                    string tmp = get(text, pos);
+                    string tmp = get(text, pos+1);
                     if (tmp != string(""))
                         res.push_back(tmp);
                 }
