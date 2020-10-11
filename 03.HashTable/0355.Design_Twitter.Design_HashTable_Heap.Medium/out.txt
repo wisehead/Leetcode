@@ -1,0 +1,175 @@
+postTweet() userId:11	tweetId:994
+postTweet() userId:4	tweetId:303
+postTweet() userId:1	tweetId:113
+postTweet() userId:18	tweetId:309
+postTweet() userId:8	tweetId:905
+postTweet() userId:6	tweetId:605
+postTweet() userId:1	tweetId:210
+postTweet() userId:15	tweetId:15
+postTweet() userId:1	tweetId:88
+postTweet() userId:1	tweetId:704
+getNewsFeed() userId:8
+	905
+
+postTweet() userId:9	tweetId:59
+postTweet() userId:4	tweetId:851
+postTweet() userId:13	tweetId:974
+postTweet() userId:2	tweetId:133
+postTweet() userId:15	tweetId:255
+postTweet() userId:15	tweetId:662
+postTweet() userId:16	tweetId:21
+postTweet() userId:13	tweetId:227
+getNewsFeed() userId:17
+xxx
+set s:17
+
+
+postTweet() userId:5	tweetId:603
+unfollow() followerId:10	followeeId:7
+postTweet() userId:5	tweetId:816
+postTweet() userId:7	tweetId:792
+postTweet() userId:12	tweetId:260
+getNewsFeed() userId:5
+	816	603
+
+postTweet() userId:4	tweetId:586
+postTweet() userId:1	tweetId:645
+getNewsFeed() userId:20
+
+
+postTweet() userId:15	tweetId:171
+postTweet() userId:16	tweetId:18
+postTweet() userId:3	tweetId:812
+postTweet() userId:15	tweetId:153
+postTweet() userId:12	tweetId:726
+postTweet() userId:6	tweetId:508
+postTweet() userId:17	tweetId:817
+xxx
+follow() followerId:5	followeeId:6
+postTweet() userId:3	tweetId:667
+postTweet() userId:5	tweetId:599
+postTweet() userId:13	tweetId:353
+postTweet() userId:11	tweetId:282
+postTweet() userId:7	tweetId:226
+postTweet() userId:18	tweetId:423
+postTweet() userId:13	tweetId:875
+postTweet() userId:2	tweetId:738
+postTweet() userId:6	tweetId:727
+postTweet() userId:7	tweetId:374
+postTweet() userId:19	tweetId:811
+postTweet() userId:8	tweetId:418
+postTweet() userId:2	tweetId:179
+postTweet() userId:3	tweetId:476
+follow() followerId:9	followeeId:15
+postTweet() userId:16	tweetId:8
+postTweet() userId:19	tweetId:827
+postTweet() userId:17	tweetId:203
+xxx
+postTweet() userId:13	tweetId:246
+follow() followerId:14	followeeId:8
+postTweet() userId:13	tweetId:750
+postTweet() userId:4	tweetId:595
+postTweet() userId:1	tweetId:793
+postTweet() userId:17	tweetId:995
+xxx
+postTweet() userId:11	tweetId:589
+postTweet() userId:2	tweetId:115
+postTweet() userId:18	tweetId:870
+postTweet() userId:15	tweetId:426
+postTweet() userId:18	tweetId:953
+postTweet() userId:10	tweetId:318
+postTweet() userId:10	tweetId:419
+postTweet() userId:2	tweetId:164
+getNewsFeed() userId:9
+	426	153	171	662	255	59	15
+
+postTweet() userId:18	tweetId:854
+postTweet() userId:3	tweetId:394
+getNewsFeed() userId:17
+xxx
+set s:17
+	995	203	817
+
+postTweet() userId:4	tweetId:834
+postTweet() userId:4	tweetId:349
+follow() followerId:2	followeeId:16
+postTweet() userId:13	tweetId:534
+postTweet() userId:3	tweetId:773
+postTweet() userId:4	tweetId:292
+postTweet() userId:5	tweetId:951
+postTweet() userId:17	tweetId:554
+xxx
+postTweet() userId:4	tweetId:646
+postTweet() userId:6	tweetId:412
+postTweet() userId:15	tweetId:548
+postTweet() userId:8	tweetId:188
+postTweet() userId:5	tweetId:539
+postTweet() userId:18	tweetId:732
+postTweet() userId:8	tweetId:591
+postTweet() userId:11	tweetId:733
+postTweet() userId:1	tweetId:517
+postTweet() userId:8	tweetId:156
+postTweet() userId:13	tweetId:331
+postTweet() userId:11	tweetId:889
+postTweet() userId:12	tweetId:782
+getNewsFeed() userId:11
+	889	733	589	282	994
+
+postTweet() userId:2	tweetId:578
+postTweet() userId:16	tweetId:487
+postTweet() userId:12	tweetId:640
+postTweet() userId:14	tweetId:112
+postTweet() userId:10	tweetId:901
+postTweet() userId:8	tweetId:807
+postTweet() userId:7	tweetId:818
+postTweet() userId:7	tweetId:627
+unfollow() followerId:14	followeeId:9
+postTweet() userId:4	tweetId:522
+postTweet() userId:7	tweetId:505
+unfollow() followerId:9	followeeId:13
+getNewsFeed() userId:3
+	773	394	476	667	812
+
+postTweet() userId:1	tweetId:971
+postTweet() userId:18	tweetId:808
+follow() followerId:1	followeeId:17
+postTweet() userId:7	tweetId:197
+postTweet() userId:7	tweetId:361
+postTweet() userId:2	tweetId:986
+postTweet() userId:17	tweetId:6
+xxx
+postTweet() userId:7	tweetId:211
+postTweet() userId:15	tweetId:342
+postTweet() userId:5	tweetId:538
+postTweet() userId:1	tweetId:711
+postTweet() userId:11	tweetId:863
+postTweet() userId:17	tweetId:339
+xxx
+postTweet() userId:5	tweetId:656
+postTweet() userId:4	tweetId:402
+postTweet() userId:1	tweetId:514
+postTweet() userId:11	tweetId:566
+unfollow() followerId:12	followeeId:11
+getNewsFeed() userId:12
+	640	782	726	260
+
+postTweet() userId:19	tweetId:899
+postTweet() userId:19	tweetId:526
+postTweet() userId:20	tweetId:799
+unfollow() followerId:4	followeeId:1
+postTweet() userId:17	tweetId:363
+xxx
+postTweet() userId:7	tweetId:845
+postTweet() userId:15	tweetId:329
+postTweet() userId:17	tweetId:369
+xxx
+unfollow() followerId:18	followeeId:18
+postTweet() userId:15	tweetId:848
+postTweet() userId:5	tweetId:928
+postTweet() userId:18	tweetId:105
+getNewsFeed() userId:18
+	105	808	732	854	953	870	423	309
+
+postTweet() userId:17	tweetId:785
+xxx
+postTweet() userId:11	tweetId:457
