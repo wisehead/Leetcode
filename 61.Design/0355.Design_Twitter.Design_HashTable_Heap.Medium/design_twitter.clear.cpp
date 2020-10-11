@@ -47,26 +47,27 @@ public:
     
     /** Follower follows a followee. If the operation is invalid, it should be a no-op. */
     void follow(int followerId, int followeeId) {
-        if (!ht.count(followerId)) {
-            set<int> s;
-            s.insert(followeeId);
-            ht[followerId] = s;
-        } else {
-            ht[followerId].insert(followeeId);
-        }
+        if (followerId == followeeId) return;
+        ht[followerId].insert(followeeId);
     }
     
     /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
     void unfollow(int followerId, int followeeId) {
-        if (followerId == followeeId) return;
-        if (ht.count(followerId) && ht[followerId].count(followeeId))
-            ht[followerId].erase(followeeId);
-        //cout<<"size of ht[followerId]:"<<ht[followerId].size()<<endl;
+        ht[followerId].erase(followeeId);
     }
 private:
     map<int, set<int>> ht;
     vector<Node> q;
 };
+
+/**
+ * Your Twitter object will be instantiated and called as such:
+ * Twitter* obj = new Twitter();
+ * obj->postTweet(userId,tweetId);
+ * vector<int> param_2 = obj->getNewsFeed(userId);
+ * obj->follow(followerId,followeeId);
+ * obj->unfollow(followerId,followeeId);
+ */
 
 /**
  * Your Twitter object will be instantiated and called as such:
