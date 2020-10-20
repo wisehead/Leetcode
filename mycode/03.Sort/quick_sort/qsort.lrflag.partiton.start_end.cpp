@@ -9,11 +9,11 @@
 #include <vector>
 using namespace std;
 
-int part(int vec[], int len) {
-	if (len <= 1) return 0;
-	int piv = 0;
+int partition(int vec[], int start, int end) {
+	if (end - start <= 0) return start;
+	int piv = start;
 	int mid = vec[piv];
-	int l = 0, r = len - 1;
+	int l = start, r = end;
 	bool L_R = false;
 	while (l <  r) {
 		if (L_R) {//L
@@ -34,15 +34,15 @@ int part(int vec[], int len) {
             }
 		}
 	}
-	return piv;
+	return l;
 }
 
-int qsort(int vec[], int len) {
-	if (len <= 1) return 0;
-	int piv = part(vec, len);
-	qsort(&vec[0], piv);
-	qsort(&vec[piv+1],len - piv - 1);
-    for (int i = 0; i < len; i++)
+void qsort(int vec[], int start, int end) {
+	if (end - start <= 0) return;
+	int piv = partition(vec, start, end);
+	qsort(vec, start, piv-1);
+	qsort(vec, piv+1, end);
+    for (int i = start; i < end; i++)
         cout<<vec[i]<<" ";
     cout<<endl;
 }
@@ -51,5 +51,5 @@ int main()
 {
 	int arr[] = {5,9,2,8,1,3,4,7,6};
 	//vector<int> vec(arr, arr+9);
-	qsort(arr, 9);
+	qsort(arr, 0, 8);
 }
