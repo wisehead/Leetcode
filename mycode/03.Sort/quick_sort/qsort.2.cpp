@@ -13,28 +13,19 @@ int qsort(int vec[], int len) {
 	if (len <= 1) return 0;
 	int piv = 0;
 	int mid = vec[piv];
-	vec[0] = mid;
+	//vec[0] = mid;
 	int l = 1, r = len - 1;
-	bool L_R = false;
 	while (l <  r) {
-		if (L_R) {//L
-			if (vec[l] > mid) {
-				//swap(vec[l], vec[piv]);
-				piv = l;
-				L_R = false;
-			}
-            else
-                l++;
-		} else {//R
-			if (vec[r] < mid) {
-				swap(vec[r], vec[piv]);
-				piv = r;
-				L_R = true;
-			} else {
-                r--;
-            }
+		while (vec[r] > mid) {
+			r--;
+		} 
+		while (vec[l] <= mid) {
+			l++;
 		}
+		if (l < r) swap(vec[l], vec[r]);
 	}
+	piv = r;
+	swap(vec[0], vec[piv]);
 	qsort(&vec[0], piv);
 	qsort(&vec[piv+1],len - piv - 1);
     for (int i = 0; i < len; i++)
