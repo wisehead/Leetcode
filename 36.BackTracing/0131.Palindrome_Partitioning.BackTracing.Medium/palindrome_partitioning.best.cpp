@@ -8,6 +8,10 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+/*The Idea is simple: loop through the string, check if substr(0, i) is palindrome.
+ If it is, recursively call dfs() on the rest of sub string: substr(i+1, length). keep the current palindrome partition so far in the 'path' argument of dfs(). When reaching the end of string, add current partition in the result.
+
+*/
 using namespace std;
 class Solution {
 public:
