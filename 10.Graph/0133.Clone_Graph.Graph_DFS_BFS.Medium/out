@@ -1,8 +1,0 @@
-out->val:2    temp->val:1
-out->val:3    temp->val:2
-out->val:4    temp->val:1
-out->val:4    temp->val:3
-out->val:3    temp->val:4
-out->val:2    temp->val:3
-out->val:1    temp->val:2
-out->val:1    temp->val:0

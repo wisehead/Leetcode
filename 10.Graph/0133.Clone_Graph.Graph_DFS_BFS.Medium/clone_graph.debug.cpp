@@ -6,8 +6,10 @@
  *  modified time: 2020/10/31-09:40:21                              
  *******************************************************************************/
 #include <iostream>
+#include <map>
+#include <set>
+#include <vector>
 using namespace std;
-/*
 // Definition for a Node.
 class Node {
 public:
@@ -29,24 +31,25 @@ public:
         neighbors = _neighbors;
     }
 };
-*/
 
 class Solution {
 public:
     Node* cloneGraph(Node* node) {
-        Node* out = new Node(node->val);
+        if (!node) return nullptr;
+        Node* out = new Node(node->val, {});
         set<int> visited;
-        map<int, Node*> ht;
-        dfs(visited, ht, node, out);
+        ht[node->val] = out;
+        dfs(visited, node, out);
+        /*
         visited.clear();
         pp(visited, node);
         cout<<"------ out ------"<<endl;
         visited.clear();
         pp(visited, out);
-        //visited.clear();
-        //dfs(visited, ht, node, out);
+        */
         return out;
     }
+
     
     void pp(set<int> &visited, Node *node) {
         if (!node) return;
@@ -54,31 +57,34 @@ public:
         visited.insert(node->val);
         cout<<"node:"<<node<<"  node->val:"<<node->val<<endl;
         for (auto e : node->neighbors) {
-            cout<<"node->val:"<<node->val<<"    e:"<<e->val<<endl;
+            cout<<"e:"<<e<<"    node->val:"<<node->val<<"    e:"<<e->val<<endl;
             pp(visited, e);
         }
     }
     
-    void dfs(set<int> &visited, map<int, Node*> ht, Node* node, Node *out) {
+    void dfs(set<int> &visited, Node* node, Node *out) {
         if (!node || !out) return;
         //cout<<"node->val:"<<node->val<<endl;
         if (visited.count(node->val)) return;
         visited.insert(node->val);
         //out->val = node->val;
-        ht[out->val] = out;
+        //ht[out->val] = out;
         for (auto e : node->neighbors) {
             Node* temp = nullptr;
             if (!ht.count(e->val)) {
-                temp = new Node(e->val);
+                temp = new Node(e->val, {});
+                ht[temp->val] = temp;
             } else {
                 temp = ht[e->val];
             }
-            //cout<<"node->val:"<<node->val<<"    e->val:"<<e->val<<endl;
+            //cout<<"node:"<<node<<"  node->val:"<<node->val<<"   e:"<<e<<"    e->val:"<<e->val<<endl;
             out->neighbors.push_back(temp);
-            dfs(visited, ht, e, temp);
-            //cout<<"out->val:"<<out->val<<"    temp->val:"<<temp->val<<endl;
+            dfs(visited, e, temp);
+            //cout<<"out:"<<out<<"    out->val:"<<out->val<<"   temp:"<<temp<<"    temp->val:"<<temp->val<<endl;
         }
     }
+private:    
+     map<int, Node*> ht;
 };
 int main()
 {}
