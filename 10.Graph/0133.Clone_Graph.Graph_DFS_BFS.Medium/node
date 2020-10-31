@@ -1,0 +1,8 @@
+node->val:1    e->val:2
+node->val:2    e->val:1
+node->val:2    e->val:3
+node->val:3    e->val:2
+node->val:3    e->val:4
+node->val:4    e->val:1
+node->val:4    e->val:3
+node->val:1    e->val:4
