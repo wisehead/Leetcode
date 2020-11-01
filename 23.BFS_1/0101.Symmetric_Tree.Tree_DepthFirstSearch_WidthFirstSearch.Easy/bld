@@ -1,2 +1,0 @@
-#!/bin/sh
-g++ -g -o out symmetric_tree.cpp 
