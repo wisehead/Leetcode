@@ -10,12 +10,22 @@ using namespace std;
 class Solution {
 public:
     int balancedStringSplit(string s) {
-        int res = 0, cnt = 0;
-        for (const auto& c : s) {
-            cnt += c == 'L' ? 1 : -1;
-            if (cnt == 0) ++res;
+        int i = 0, cnt = 0;
+        while (i < s.length()-1) {
+            int l = 0, r = 0;
+            for (int j = i; j < s.length(); j++) {
+                if (s[j] == 'L') l++;
+                else r++;
+                //cout<<"i"<<i<<" j:"<<j<<"   sub:"<<sub<<endl;
+                if (l > 0 && l == r) {
+                    //cout<<"ok sub:"<<sub<<endl;
+                    cnt++;
+                    i = j+1;
+                    break;
+                }
+            }
         }
-        return res;        
+        return cnt;
     }
 };
 int main()
