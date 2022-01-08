@@ -7,33 +7,19 @@
  *******************************************************************************/
 #include <iostream>
 #include <vector>
-#include <stack>
-#include <map>
 using namespace std;
 class Solution {
 public:
     int maxDepth(string s) {
-        //cout<<"s:"<<s<<endl;
-        if (mm.count(s)) return mm[s];
-        stack<int> st;
-        int depth = 0;
-        int N = s.length();
-        for (int i = 0; i < N; i++) {
-            char c = s[i];
-            if (c == '(') {
-                st.push(i);
-            } else if (c == ')') {
-                int x = st.top();
-                st.pop();
-                int ret = maxDepth(s.substr(x+1, i - x-1));
-                if (ret+1 > depth) depth = ret + 1;
-            }
+        int res = 0, cur = 0;
+        for (char& c: s) {
+            if (c == '(')
+                res = max(res, ++cur);
+            if (c == ')')
+                cur--;
         }
-        mm[s] = depth;
-        return depth;
+        return res;
     }
-private:
-    map<string, int> mm;
 };
 int main()
 {}
